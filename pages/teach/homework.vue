@@ -1,0 +1,61 @@
+<template>
+  <div class="px-3">
+    <v-card
+      height="80"
+      width="100%"
+      color="#F5F5F5"
+      class="d-flex justify-space-between align-center pa-3 rounded-xl mt-3"
+      v-for="item in 3"
+      :key="item"
+    >
+      <div class="d-flex">
+        <!-- <v-checkbox
+              v-model="ex4"
+              color="success"
+              hide-details
+              class="change-box"
+            ></v-checkbox> -->
+        <input type="checkbox" id="exampleCheck" />
+        <span class="ml-3">
+          <h3>Test çözüm örnekeleri</h3>
+          <div class="sub-title">matehematics-mixed number</div>
+        </span>
+      </div>
+      <v-btn fab icon>
+        <v-icon medium> mdi-arrow-down-circle-outline </v-icon>
+      </v-btn>
+    </v-card>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return { ex4: false };
+  },
+  created() {
+    let urlName = this.$route.fullPath;
+    urlName = urlName.split("/")[2];
+    this.$store.dispatch("lessonsName", urlName);
+  },
+};
+</script>
+<style scoped>
+h3 {
+  color: #141414;
+  font-size: 20px;
+}
+.sub-title {
+  font-size: 16px;
+  color: #141414;
+  font-weight: 400;
+}
+#exampleCheck {
+  width: 32px;
+  height: 32px;
+  margin-top: 10px;
+  opacity: 0.5;
+}
+#exampleCheck:hover {
+  opacity: 1;
+}
+</style>
