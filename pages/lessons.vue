@@ -7,8 +7,9 @@
     <div v-else>
       <sidebarMobil v-if="$store.state.mobilSildeBar" :data="sidebar" />
     </div>
-    <div style="width: 100%">
-      <headerMenu class="" />
+
+    <div class="child-responsive" style="width: 80%">
+      <headerMenu />
       <nuxt-child />
     </div>
   </div>
@@ -69,25 +70,23 @@ export default {
 * {
   padding: 0;
 }
-.title {
-  font-size: 24px;
-  color: #141414;
-  font-weight: 500;
+.child-responsive {
+  width: 80%;
 }
 .sidebars {
-  width: 290px;
+  width: 20% !important;
   height: 100vh;
   position: relative;
 }
 .sidebar-destop {
   position: fixed;
+  width: 20% !important;
   top: 0;
   left: 0;
 }
 @media only screen and (max-width: 600px) {
-}
-
-.resonsive-icon {
-  display: none !important;
+  .child-responsive {
+    width: 100% !important;
+  }
 }
 </style>

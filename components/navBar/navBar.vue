@@ -42,16 +42,22 @@
         <lang />
         <v-btn
           text
-          @click="openRegister"
+          @click="openRegister('login')"
           class="caption white--text hidden-sm-and-down"
         >
           {{ $i18n.t("login") }}
         </v-btn>
         <v-btn
-          @click="openRegister"
+          @click="openRegister('register')"
           style="color: #183869"
           class="rounded-xl hidden-sm-and-down"
           >{{ $i18n.t("singup") }}
+        </v-btn>
+        <v-btn
+          @click="lessons"
+          style="color: #183869"
+          class="rounded-xl hidden-sm-and-down"
+          >lessons
         </v-btn>
       </div>
     </v-card>
@@ -70,8 +76,21 @@ export default {
       this.$store.dispatch("menuShowRes", true);
     },
 
-    openRegister() {
+    openRegister(value) {
       this.$store.dispatch("registershow", true);
+
+      if (value === "login") {
+        this.$store.dispatch("islogin", true);
+      } else if (value === "register") {
+        this.$store.dispatch("islogin", false);
+      }
+    },
+    lessons() {
+      this.$router.push(
+        this.localePath({
+          name: "lessons-lessons",
+        })
+      );
     },
   },
 };

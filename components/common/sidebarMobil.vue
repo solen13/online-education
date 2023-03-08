@@ -6,16 +6,20 @@
         <img src="https://randomuser.me/api/portraits/women/81.jpg" />
       </v-avatar>
     </div>
-    <v-list rounded>
+    <v-list class="mt-3" rounded>
       <v-list-item-group>
         <v-list-item
-          v-for="(item, index) in data"
           active-class="active"
+          class="pl-2 black--text"
+          v-for="(item, index) in data"
           :key="index"
+          :to="localePath({ name: item.route })"
+          @click="inboxBtn"
         >
-          <v-icon class="ml-3">{{ item.icon }}</v-icon>
-          <v-list-item-title class="ml-3"> {{ item.title }}</v-list-item-title>
-
+          <v-icon>{{ item.icon }}</v-icon>
+          <v-list-item-title class="ml-3">
+            {{ $i18n.t(item.title) }}</v-list-item-title
+          >
           <div class="d-flex justify-end">
             <p
               style="background: #364fc7"
@@ -25,25 +29,40 @@
             </p>
           </div>
         </v-list-item>
+        <v-list
+          style="margin-top: 60%; with: 100%"
+          class="d-flex justify-center align-end"
+        >
+          <div>
+            <div class="d-flex justify-center mb-2">
+              <lang />
+            </div>
+            <div class="d-flex justify-center">
+              <div>
+                <v-btn
+                  style="width: 87px; color: #364fc7"
+                  text
+                  :to="localePath('/')"
+                >
+                  <v-icon>mdi-chevron-left</v-icon> {{ $i18n.t("logout") }}
+                </v-btn>
+                <v-btn style="color: #364fc7" text>
+                  {{ $i18n.t("privacy") }}</v-btn
+                >
+              </div>
+            </div>
+          </div>
+        </v-list>
       </v-list-item-group>
     </v-list>
-    <div
-      style="width: 100%; height: 35%"
-      class="d-flex justify-center align-end"
-    >
-      <div>
-        <v-btn style="width: 87px; color: #364fc7" text>
-          <v-icon>mdi-chevron-left</v-icon>log out</v-btn
-        >
-        <v-btn style="color: #364fc7" text>privacy</v-btn>
-      </div>
-    </div>
   </v-navigation-drawer>
 </template>
 
 <script>
+import lang from "@/components/lang/lang.vue";
 export default {
   layout: "students",
+  component: { lang },
   props: {
     data: {
       type: Array,
@@ -78,10 +97,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-}
-
 .active {
   background-color: #364fc7 !important;
   color: white !important;

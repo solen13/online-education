@@ -2,23 +2,18 @@
   <div>
     <h1>UX/UI Couses</h1>
     <h4>The basics are free</h4>
-    <div
-      class="mt-2"
-      @click="routeCard(item)"
-      v-for="(item, index) in 2"
-      :key="index"
-    >
+    <div class="mt-2" v-for="(item, index) in 2" :key="index" @click="routeCard(item)">
       <courses-card />
     </div>
-    <h4 class="mb-2 mt-2">From basics to profession</h4>
+    <!-- <h4 class="mb-2 mt-2">From basics to profession</h4>
     <div
       class="mt-2"
-      @click="routeCard(item)"
       v-for="(item, index) in 3"
       :key="index"
+      @click="routeCard(item)"
     >
       <courses-card />
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -27,7 +22,12 @@ export default {
   components: { coursesCard },
   methods: {
     routeCard(item) {
-      this.$router.push("/detail/courses/uxix" + item);
+      this.$router.push(
+        this.localePath({
+          name: "detail-courses",
+          params: { id: "1234" },
+        })
+      );
     },
   },
 };

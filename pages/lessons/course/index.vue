@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-row style="width: 90%" class="mx-auto">
+    <v-row style="width: 100%" class="mx-auto">
       <v-col
         md="4"
         class="d-flex justify-center"
-        @click="cardClick(item, index)"
         v-for="(item, index) in lessons"
         :key="index"
+        @click="cardClick()"
       >
         <courseBox :btnShow="false" :getData="item" />
       </v-col>
@@ -46,9 +46,12 @@ export default {
   },
   methods: {
     cardClick(item, index) {
-      this.$router.push("/lessons/course" + item.router);
-      console.log(item);
-      console.log(index);
+      this.$router.push(
+        this.localePath({
+          name: "lessons-course-course",
+          params: { id: "46546" },
+        })
+      );
     },
   },
 

@@ -5,4 +5,5 @@ export default () => ({
   mobilSildeBar: false,
   windowBack: true,
   lessonsName: "",
+  reviewsDetail: "",
 });

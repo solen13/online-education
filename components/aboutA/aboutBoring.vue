@@ -5,7 +5,7 @@
       <v-col class="mx-auto" cols="6">
         <v-card flat height="250" class="pa-6 card-content">
           <h2>Lorem ipsum</h2>
-          <p>learing of the future in NOT Just about video tutorials.</p>
+          <p>learing of the future in NOT Just about video tutoriials.</p>
         </v-card>
       </v-col>
       <v-col class="mx-auto" cols="6" md="">

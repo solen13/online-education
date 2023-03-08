@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <h1>All Feedback</h1>
-    <div @click="cardClicked(item)" v-for="item in loadLength" class="mt-2">
+    <div v-for="item in loadLength" class="mt-2" @click="cardClicked(item)">
       <reviewsCard />
     </div>
     <div class="d-flex justify-center mt-2">
@@ -23,8 +23,8 @@ export default {
       this.loadLength += 3;
     },
 
-    cardClicked(item) {
-      this.$router.push("/detail/reviews/all" + item);
+    cardClicked() {
+      this.$store.dispatch("reviewsDetail", this.fakeData);
     },
   },
 };

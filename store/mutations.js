@@ -14,7 +14,11 @@ export default {
   mobilSildeBars(state, payload) {
     state.mobilSildeBar = payload;
   },
+
   islogins(state, payload) {
     state.islogin = payload;
+  },
+  reviewsDetails(state, payload) {
+    state.reviewsDetail = payload;
   },
 };

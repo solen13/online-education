@@ -17,4 +17,7 @@ export default {
   islogin({ commit }, payload) {
     commit("islogins", payload);
   },
+  reviewsDetail({ commit }, payload) {
+    commit("reviewsDetails", payload);
+  },
 };

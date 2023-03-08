@@ -50,6 +50,51 @@ const i18n = {
       tr: "/ileti",
       en: "/contacts",
     },
+
+    "courses/english": {
+      tr: "/kurs/inglizce",
+      en: "/courses/english",
+    },
+
+    "courses/mathematich": {
+      tr: "/kurs/matematik",
+      en: "/courses/mathematich",
+    },
+
+    "courses/frontend": {
+      tr: "/kurs/arayuz",
+      en: "/courses/frontend",
+    },
+
+    "courses/uxui": {
+      tr: "/kurs/uxui",
+      en: "/courses/uxui",
+    },
+    "detail/_courses": {
+      tr: "/detay/:id([0-9]+)",
+      en: "/detail/:id([0-9]+)",
+    },
+    ////
+    "reviews/english": {
+      tr: "/inceleme/inglizce",
+      en: "/reviews/english",
+    },
+
+    "reviews/mathematich": {
+      tr: "/inceleme/matematik",
+      en: "/reviews/mathematich",
+    },
+
+    "reviews/frontend": {
+      tr: "/inceleme/onuc",
+      en: "/reviews/frontend",
+    },
+
+    "reviews/uxui": {
+      tr: "/inceleme/uxui",
+      en: "/reviews/uxui",
+    },
+    ///////////
     "lessons/lessons": {
       tr: "/ders/dersler",
       en: "/lessons/lessons",
@@ -63,13 +108,15 @@ const i18n = {
       tr: "/ders/mesajlar/:id([0-9]+)",
       en: "/lessons/inbox/:id([0-9]+)",
     },
+
     "lessons/course/index": {
       tr: "/ders/kurs",
       en: "/lessons/course",
     },
+
     "lessons/course/_course": {
-      tr: "/ders/kurs/:title(.*)-:id([0-9]+)",
-      en: "/lessons/course/:title(.*)-:id([0-9]+)",
+      tr: "/ders/kurs/:id([0-9]+)",
+      en: "/lessons/course/-:id([0-9]+)",
     },
     "lessons/homework": {
       tr: "/ders/evodevi",

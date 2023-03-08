@@ -99,7 +99,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .right-banner {
   background-color: #ecf5fb;
 }

@@ -4,11 +4,10 @@
     <h4>The basics are free</h4>
     <div
       class="mt-2"
-      @click="routeCard(item)"
       v-for="(item, index) in 5"
       :key="index + 1"
+      @click="routeCard(item)"
     >
-      {{ item }}
       <courses-card />
     </div>
     <!-- <h4 class="mb-2 mt-2">From basics to profession</h4>
@@ -29,7 +28,12 @@ export default {
   components: { coursesCard },
   methods: {
     routeCard(item) {
-      this.$router.push("/detail/courses/all" + item);
+      this.$router.push(
+        this.localePath({
+          name: "detail-courses",
+          params: { id: "1234" },
+        })
+      );
     },
   },
 };

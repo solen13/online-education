@@ -5,23 +5,28 @@
       height="100%"
       class="mx-auto rounded-xl mt-1 card-responsive"
     >
+      <div class="d-flex justify-end align-start pa-2">
+        <v-btn fab small class="red white--text" @click="close">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </div>
       <div class="d-flex justify-center">
-        <v-btn :class="{ active: login }" @click="loginRoute" class="head" text>
+        <v-btn
+          :class="{ active: logiOrRegister }"
+          @click="loginRoute"
+          class="head"
+          text
+        >
           Log In
         </v-btn>
         <v-btn
-          :class="{ active: !login }"
+          :class="{ active: !logiOrRegister }"
           @click="singuUpRoute"
           class="head ml-5"
           text
         >
           Sing Up
         </v-btn>
-        <div>
-          <v-btn @click="close">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </div>
       </div>
 
       <v-row style="width: 80%" class="mx-auto mt-4">
@@ -36,7 +41,7 @@
           >
           </v-text-field>
         </v-col>
-        <v-col cols="12" v-if="!login">
+        <v-col cols="12" v-if="!logiOrRegister">
           <v-text-field
             label="full name"
             placeholder="Full name"
@@ -58,7 +63,7 @@
             @click:append="show1 = !show1"
           ></v-text-field>
         </v-col>
-        <v-col cols="6" v-if="!login">
+        <v-col cols="6" v-if="!logiOrRegister">
           <v-text-field
             label="Number"
             placeholder="Number"
@@ -70,7 +75,11 @@
           </v-text-field>
         </v-col>
         <v-col cols="12">
-          <v-btn v-if="login" class="blue white--text py-3" style="width: 100%">
+          <v-btn
+            v-if="logiOrRegister"
+            class="blue white--text py-3"
+            style="width: 100%"
+          >
             Login
           </v-btn>
           <v-btn v-else class="blue white--text py-3" style="width: 100%">
@@ -142,18 +151,22 @@ export default {
     return {
       show1: false,
       password: "Password",
-      login: true,
     };
   },
   methods: {
     loginRoute() {
-      this.login = true;
+      this.$store.dispatch("islogin", true);
     },
     singuUpRoute() {
-      this.login = false;
+      this.$store.dispatch("islogin", false);
     },
     close() {
       this.$store.dispatch("registershow", false);
+    },
+  },
+  computed: {
+    logiOrRegister() {
+      return this.$store.state.islogin;
     },
   },
 };

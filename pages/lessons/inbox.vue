@@ -70,12 +70,8 @@ export default {
   },
   components: { messageBoxs, emtiyBox },
   methods: {
-    route() {
-      this.$store.dispatch("windowBack", false);
-    },
     routeBtn() {
-      alert();
-      console.log(this);
+      this.$store.dispatch("windowBack", false);
       this.$router.push(
         this.localePath({
           name: "lessons-inbox-message",
@@ -85,7 +81,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("windowBack", true);
+    //  this.$store.dispatch("windowBack", true);
   },
 };
 </script>

@@ -45,13 +45,33 @@
     </v-btn>
 
     <div class="d-flex justify-center mt-2">
-      <v-btn class="rounded-xl white--text" outlined>
+      <v-btn
+        class="rounded-xl white--text"
+        outlined
+        @click="openRegister('login')"
+      >
         {{ $i18n.t("login") }}
       </v-btn>
     </div>
     <div class="d-flex justify-center mt-2">
-      <v-btn style="color: #183869" class="rounded-xl">
+      <v-btn
+        style="color: #183869"
+        class="rounded-xl"
+        @click="openRegister('register')"
+      >
         {{ $i18n.t("singup") }}
+      </v-btn>
+    </div>
+    <div class="d-flex justify-center mt-2">
+      <v-btn
+        style="color: #183869"
+        class="d-flex justify-center mt-2"
+        :to="
+          localePath({
+            name: 'lessons-lessons',
+          })
+        "
+        >lessons
       </v-btn>
     </div>
   </v-card>
@@ -66,6 +86,15 @@ export default {
   methods: {
     close() {
       this.$store.dispatch("menuShowRes", false);
+    },
+    openRegister(value) {
+      this.$store.dispatch("menuShowRes", false);
+      this.$store.dispatch("registershow", true);
+      if (value === "login") {
+        this.$store.dispatch("islogin", true);
+      } else if (value === "register") {
+        this.$store.dispatch("islogin", false);
+      }
     },
   },
 };

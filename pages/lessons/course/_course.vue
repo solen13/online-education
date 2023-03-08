@@ -1,47 +1,31 @@
 <template>
-  <v-container v-if="getData">
-    <v-row style="width: 100%" class="d-flex justify-center">
-      <v-col cols="12" md="8" xl="8">
-        <v-card
-          v-if="getDatavideo"
-          flat
-          elevation="0"
-          tile
-          class="transparent px-1"
-          width="100%"
-          height="100%"
-        >
-          <videoPlayer :src="getDatavideo.videSorce" />
-          <div>
-            <v-card height="100%" flat width="100%" class="pl-9">
-              <h2 class="mt-2">{{ getDatavideo.descaptionsTitle }}</h2>
-              <p class="mt-4 message">{{ getDatavideo.descaptions }}</p>
-              <v-btn v-if="isbtnText" @click="btnText" text color="blue--text"
-                >devam</v-btn
-              >
-              <v-btn v-else @click="btnText" text color="blue--text"
-                >kısalt</v-btn
-              >
-            </v-card>
-          </div>
-        </v-card>
+  <div style="width: 100%" class="d-flex justify-center container-responsive">
+    <v-row v-if="getData" style="width: 100%" class="d-flex justify-center">
+      <v-col cols="12" md="9" xl="9" class="pl-3 pt-3" style="padding: 0">
+        <videoPlayer style="width: 100%" :src="getDatavideo.videSorce" />
+        <div class="pl-9">
+          <h2 class="mt-2">{{ getDatavideo.descaptionsTitle }}</h2>
+          <p class="mt-4 message">{{ getDatavideo.descaptions }}</p>
+          <v-btn v-if="isbtnText" @click="btnText" text color="blue--text">devam</v-btn>
+          <v-btn v-else @click="btnText" text color="blue--text">kısalt</v-btn>
+        </div>
       </v-col>
-      <v-col cols="12" md="4" xl="4">
-        <v-list class="mt-3" rounded>
-          <v-list-item-group>
+      <v-col cols="12" md="3" xl="3" class="list-container">
+        <v-list class="mt-3 transparent">
+          <v-list-item-group class="transparent">
             <v-list-item
+              class="transparent"
               v-for="(item, index) in getData.course"
               active-class="active"
               :key="index"
-              @click="getLessonData(index)"
             >
-              {{ item.title }} {{ index }}
+              {{ item.title }}
             </v-list-item>
           </v-list-item-group>
         </v-list>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 <script>
 import api from "@/constant/coursesList.js";
@@ -57,7 +41,7 @@ export default {
   },
 
   mounted() {
-    this.route = this.$route.params.title;
+    this.route = this.$route.params.id;
     this.idRoute = this.$route.params.id;
   },
   methods: {
@@ -95,8 +79,18 @@ export default {
 };
 </script>
 <style scoped>
+.list-container {
+  height: 100vh;
+  padding: 0;
+  background-color: #f7f9fa;
+}
 .message {
   height: 50px;
   overflow: hidden;
+}
+@media only screen and (max-width: 600px) {
+  .container-responsive {
+    width: 96% !important;
+  }
 }
 </style>
