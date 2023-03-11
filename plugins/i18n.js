@@ -130,6 +130,43 @@ const i18n = {
       tr: "/ders/profilin",
       en: "/lessons/profile",
     },
+
+    ///teach
+    "teach/lessons": {
+      tr: "/ogretmen/dersler",
+      en: "/teach/lessons",
+    },
+
+    "teach/inbox/index": {
+      tr: "/ogretmen/mesajlar",
+      en: "/teach/inbox",
+    },
+    "teach/inbox/_message": {
+      tr: "/ogretmen/mesajlar/:id([0-9]+)",
+      en: "/teach/inbox/:id([0-9]+)",
+    },
+
+    "teach/course/index": {
+      tr: "/ogretmen/kurs",
+      en: "/teach/course",
+    },
+
+    "teach/course/_course": {
+      tr: "/ogretmen/kurs/:id([0-9]+)",
+      en: "/teach/course/:id([0-9]+)",
+    },
+    "teach/homework": {
+      tr: "/ogretmen/evodevi",
+      en: "/teach/homework",
+    },
+    "teach/notification": {
+      tr: "/ogretmen/bildirimler",
+      en: "/teach/notification",
+    },
+    "teach/profile": {
+      tr: "/ogretmen/profilin",
+      en: "/teach/profile",
+    },
   },
 };
 

@@ -1,74 +1,257 @@
 <template>
   <div>
-    video
-    <video
-      id="example-video"
-      preload
-      width="600"
-      height="360"
-      class="video-js vjs-default-skin"
-      controls
-    >
-      <source
-        src="https://mediaservicerainet02-euno.streaming.media.azure.net/f484203b-6165-4bb1-95a9-1005e57afe72/test_10min.ism/manifest(format=m3u8-aapl)?v=123"
-        type="application/vnd.apple.mpegurl"
-      />
-    </video>
+    <div class="d-flex justify-space-between px-8">
+      <v-btn class="blue white--text rounded-pill">back</v-btn>
+      <v-btn class="pink white--text rounded-pill">Live</v-btn>
+      <v-btn @click="isAdd = true" class="blue white--text rounded-pill"
+        >ADD</v-btn
+      >
+    </div>
+    <v-container>
+      <li
+        class="todo-item mt-3"
+        v-for="(item, i) in todos"
+        :key="i"
+        draggable="true"
+        @dragstart="dragStart(i, $event)"
+        @dragover.prevent
+        @dragend="dragEnd"
+        @drop="dragFinish(i, $event)"
+      >
+        <cardContent
+          :getData="item"
+          @upDate="upDateBtn(item)"
+          @moveUp="move(i, i - 1)"
+          @moveDown="move(i, i + 1)"
+          @removeItem="removeItem(item)"
+        />
+      </li>
+    </v-container>
+    <div v-if="isAdd" class="popap d-flex align-center">
+      <v-card width="400" height="350" class="px-4" style="margin-left: 25%">
+        <div class="d-flex justify-end">
+          <v-btn fab small @click="isAdd = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
+        <h3 class="mt-3 text-center mb-2">Add Video</h3>
+        <v-text-field
+          label="Title"
+          placeholder="title"
+          v-model="newItem"
+          outlined
+          class=""
+        />
+        <v-text-field
+          label="Subject"
+          placeholder="Subject"
+          v-model="subject"
+          outlined
+          class=""
+        />
+        <div class="d-flex justify-center mb-3">
+          <v-btn
+            color="primary"
+            class="text-none"
+            outlined
+            depressed
+            :loading="isSelecting"
+            @click="onButtonClick"
+          >
+            <v-icon left> mdi-cloud-upload </v-icon>
+            {{ buttonText }}
+          </v-btn>
+          <input
+            ref="uploader"
+            class="d-none"
+            type="file"
+            accept="application/pdf,application/vnd.ms-excel"
+            @change="onFileChanged"
+          />
+        </div>
+        <div class="d-flex justify-center">
+          <v-btn @click="addItem" class="blue white--text">Add</v-btn>
+        </div>
+      </v-card>
+    </div>
   </div>
 </template>
-
 <script>
+import cardContent from "@/components/courseCreate/createdDetail.vue";
+const TODO_STORAGE_KEY = "todostorage";
+
+let todoStorage = {
+  fetch: () => JSON.parse(localStorage.getItem(TODO_STORAGE_KEY) || "[]"),
+  save: (todos) =>
+    localStorage.setItem(TODO_STORAGE_KEY, JSON.stringify(todos)),
+};
+Array.prototype.move = function (from, to) {
+  this.splice(to, 0, this.splice(from, 1)[0]);
+  return this;
+};
 export default {
-  components: {},
+  components: { cardContent },
   data() {
     return {
-      videoOptions: {
-        autoplay: true,
-        controls: true,
-        sources: [
-          {
-            src: "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",
-            type: "video/mp4",
-          },
-        ],
-      },
+      isAdd: false,
+      defaultButtonText: "Drop Video",
+      selectedFile: null,
+      isSelecting: false,
+      sendData: ["test", "test"],
+      todos: todoStorage.fetch(),
+
+      dragging: -1,
+      subject: "",
+      newItem: "",
     };
   },
-  created() {
-    let urlName = this.$route.fullPath;
-    urlName = urlName.split("/")[2];
-    this.$store.dispatch("lessonsName", urlName);
+  methods: {
+    addItem() {
+      if (!this.newItem) {
+        return;
+      }
+
+      this.todos.push({
+        title: this.newItem,
+        subject: this.subject,
+        //video:this.selectedFile
+      });
+      this.newItem = "";
+      this.subject = "";
+    },
+
+    removeItem(item) {
+      this.todos.splice(this.todos.indexOf(item), 1);
+    },
+    removeItemAt(index) {
+      this.todos.splice(index, 1);
+    },
+    dragStart(which, ev) {
+      ev.dataTransfer.setData("Text", this.id);
+      ev.dataTransfer.dropEffect = "move";
+      this.dragging = which;
+    },
+
+    dragEnd(ev) {
+      this.dragging = -1;
+    },
+    dragFinish(to, ev) {
+      this.moveItem(this.dragging, to);
+      ev.target.style.marginTop = "2px";
+      ev.target.style.marginBottom = "2px";
+    },
+    moveItem(from, to) {
+      if (to === -1) {
+        this.removeItemAt(from);
+      } else {
+        this.todos.splice(to, 0, this.todos.splice(from, 1)[0]);
+      }
+    },
+
+    move(from, to) {
+      this.todos.move(from, to);
+    },
+
+    onButtonClick() {
+      this.isSelecting = true;
+      window.addEventListener(
+        "focus",
+        () => {
+          this.isSelecting = false;
+        },
+        { once: true }
+      );
+
+      this.$refs.uploader.click();
+    },
+    onFileChanged(e) {
+      this.selectedFile = e.target.files[0];
+
+      // do something
+      console.log(this.selectedFile);
+    },
+
+    upDateBtn(data) {
+      console.log(data);
+      this.isAdd = true;
+      this.newItem = data.title;
+      this.subject = data.subject;
+    },
+  },
+
+  computed: {
+    isDragging() {
+      return this.dragging > -1;
+    },
+    buttonText() {
+      return this.selectedFile
+        ? this.selectedFile.name
+        : this.defaultButtonText;
+    },
+  },
+  // watch todos change for localStorage persistence
+  watch: {
+    todos: {
+      handler: function (todos) {
+        todoStorage.save(todos);
+      },
+      deep: true,
+    },
   },
 };
 </script>
 <style scoped>
-#resizer,
-footer {
-  background-color: #eceef1;
-  color: #868688;
-  padding: 3px 10px;
+.subtitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+  font-size: 14px;
+}
+@media only screen and (min-width: 600px) {
+  .card-responsive {
+  }
+  .todo-item {
+    width: 100%;
+  }
+}
+body {
+  font-family: "Source Sans Pro", "Arial", sans-serif;
 }
 
-.footer-text {
-  padding: 3px;
-  display: block;
+* {
+  box-sizing: border-box;
 }
 
-footer .copyright {
-  float: left;
+.todo-list {
+  list-style-type: none;
+  padding: 10px;
 }
 
-footer .other-links {
-  margin: 0;
-  padding: 0;
-  float: right;
+.done {
+  text-decoration: line-through;
+  color: #888;
 }
 
-footer .other-links li {
-  display: inline;
+.new-todo {
+  width: 100%;
 }
 
-footer .logo {
-  display: none;
+.trash-drop {
+  border: 2px dashed #ccc !important;
+  text-align: center;
+  color: #e33;
+}
+
+.trash-drop:-moz-drag-over {
+  border: 2px solid red;
+}
+.popap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(177, 177, 184, 0.188);
+  z-index: 99;
 }
 </style>

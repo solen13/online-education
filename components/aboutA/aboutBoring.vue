@@ -4,8 +4,8 @@
     <v-row style="width: 70%" class="mx-auto row-container mt-3">
       <v-col class="mx-auto" cols="6">
         <v-card flat height="250" class="pa-6 card-content">
-          <h2>Lorem ipsum</h2>
-          <p>learing of the future in NOT Just about video tutoriials.</p>
+          <h2>Lorem ipsumm</h2>
+          <p>learing of the future in NOT Just about video tutorials.</p>
         </v-card>
       </v-col>
       <v-col class="mx-auto" cols="6" md="">

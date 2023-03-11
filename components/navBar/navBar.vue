@@ -59,6 +59,13 @@
           class="rounded-xl hidden-sm-and-down"
           >lessons
         </v-btn>
+
+        <v-btn
+          @click="teach"
+          style="color: #183869"
+          class="rounded-xl hidden-sm-and-down"
+          >teach
+        </v-btn>
       </div>
     </v-card>
   </div>
@@ -89,6 +96,13 @@ export default {
       this.$router.push(
         this.localePath({
           name: "lessons-lessons",
+        })
+      );
+    },
+    teach() {
+      this.$router.push(
+        this.localePath({
+          name: "teach-lessons",
         })
       );
     },

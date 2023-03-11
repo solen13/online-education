@@ -3,31 +3,29 @@
     <v-list class="destop">
       <v-list-item-group>
         <v-list-item
-          v-for="(item, i) in message"
+          v-for="(item, i) in messages"
           class="mt-1"
           active-class="active"
           :key="i"
-          :to="`/lessons/inbox/${item.name}`"
+          @click="routeBtn"
         >
           <messageBoxs :data="item" />
         </v-list-item>
       </v-list-item-group>
     </v-list>
 
-    <div class="destopchild destop" style="width: 100%">
+    <div class="desktopchild desktop" style="width: 100%">
       <nuxt-child />
     </div>
     <!-- 600 px  -->
     <v-list class="mobil" v-if="$store.state.windowBack">
       <v-list-item-group>
         <v-list-item
-          v-for="(item, i) in message"
+          v-for="(item, i) in messages"
           class="mt-1"
           active-class="active"
           :key="i"
-          :to="`/lessons/inbox/${item.name}`"
-          @click="route"
-          link
+          @click="routeBtn"
         >
           <messageBoxs :data="item" />
         </v-list-item>
@@ -46,7 +44,7 @@ export default {
   data() {
     return {
       isShow: true,
-      message: [
+      messages: [
         {
           name: "Ali atak",
           time: "12:32 PM",
@@ -72,18 +70,24 @@ export default {
   },
   components: { messageBoxs, emtiyBox },
   methods: {
-    route() {
+    routeBtn() {
       this.$store.dispatch("windowBack", false);
+      this.$router.push(
+        this.localePath({
+          name: "teach-inbox-message",
+          params: { id: "1234" },
+        })
+      );
     },
   },
   mounted() {
-    this.$store.dispatch("windowBack", true);
+    //  this.$store.dispatch("windowBack", true);
   },
 };
 </script>
 <style scoped>
 @media only screen and (min-width: 600px) {
-  .destop {
+  .desktop {
     display: block;
   }
   .mobil {
@@ -100,7 +104,7 @@ export default {
   }
 }
 @media only screen and (max-width: 750px) {
-  .destopchild {
+  .desktopchild {
     display: none;
   }
 }

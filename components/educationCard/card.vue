@@ -48,6 +48,18 @@
           >Learn course free
         </v-btn>
       </div>
+      <div v-if="teachControl" class="d-flex justify-center mt-2">
+        <v-btn color="pink " class="white--text" small @click="update"
+          >update</v-btn
+        >
+        <v-btn color="blue" small class="ml-1 white--text" @click="sss"
+          >S.S.S</v-btn
+        >
+
+        <v-btn color="green" class="white--text ml-1" @click="confirm" small
+          >detail</v-btn
+        >
+      </div>
     </span>
   </v-card>
 </template>
@@ -59,9 +71,31 @@ export default {
       type: Boolean,
       default: true,
     },
+    teachControl: {
+      type: Boolean,
+      default: false,
+    },
+    detailClciked: {
+      type: Boolean,
+      default: false,
+    },
     getData: {
       type: Object,
       default: () => {},
+    },
+  },
+  methods: {
+    confirm(e) {
+      this.$emit("clicked", "ugur");
+      console.log(e);
+    },
+    update(e) {
+      this.$emit("update", "ugur");
+      console.log(e);
+    },
+    sss(e) {
+      this.$emit("sss", "ugur");
+      console.log(e);
     },
   },
   data: () => ({
