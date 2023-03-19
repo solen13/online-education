@@ -19,9 +19,10 @@ export default {
   Lessons: "Lessons",
   Inbox: "Inbox",
   Courses: "Courses",
-
   Homework: "Homework",
   Notification: "Notification",
+  Profile: "Profile",
+
   logout: "logout",
   privacy: "privacy",
   //lesson card

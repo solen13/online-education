@@ -2,7 +2,7 @@
   <div>
     <coursesVideo />
     <detailJobs />
-    <questions />
+    <questions class="mt-16" />
   </div>
 </template>
 <script>

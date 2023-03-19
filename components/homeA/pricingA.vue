@@ -1,6 +1,11 @@
 <template>
   <v-container>
-    <h1 class="text-center text-h2 pa-2">Pricing</h1>
+    <h1
+      style="color: #272d4e"
+      class="text-center text-h2 pa-2 font-weight-bold"
+    >
+      Pricing
+    </h1>
 
     <v-card width="80%" flat class="mx-auto mt-3 card">
       <div class="align-self-center card-left rounded-tl-xl rounded-bl-xl px-4">

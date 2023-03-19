@@ -14,26 +14,25 @@
           <v-btn
             active-class="active"
             color="#61a0ff"
-            @click="routerBtn('english')"
+            :to="localePath(`reviews-english`)"
             >english</v-btn
           >
           <v-btn
             active-class="active"
-            @click="routerBtn('mathematics')"
+            :to="localePath(`reviews-mathematics`)"
             color="#61a0ff"
             >mathematics</v-btn
           >
           <v-btn
             active-class="active"
-            @click="routerBtn('frontend')"
+            :to="localePath(`reviews-frontend`)"
             color="#61a0ff"
             >Front-end</v-btn
           >
           <v-btn
             active-class="active"
-            exact
             color="#61a0ff"
-            @click="routerBtn('uxui')"
+            :to="localePath(`reviews-uxui`)"
             >UX/UI</v-btn
           >
         </v-card>

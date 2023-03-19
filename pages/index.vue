@@ -5,7 +5,9 @@
     <ourCouse />
     <teach class="mb-3" />
     <pricing />
+
     <reviews />
+
     <questions />
     <people class="hidden-sm-and-down" />
     <contack class="hidden-sm-and-down" />
@@ -37,3 +39,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.top-margin {
+  margin-top: 100px !important;
+}
+</style>

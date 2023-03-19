@@ -25,16 +25,30 @@
         <h4 style="color: #040432" class="font-weight-regular text-center mt-1">
           17 January
         </h4>
-        <div class="mt-8">
-          <v-avatar size="30">
-            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-          </v-avatar>
-          <v-avatar size="30" class="">
-            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-          </v-avatar>
-          <v-avatar size="30" class="">
-            <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
-          </v-avatar>
+        <div class="mt-8 d-flex">
+          <div
+            class="avatar-content rounded-circle"
+            v-for="(item, index) in avatars"
+            :key="index"
+          >
+            <v-avatar class="borders" size="30">
+              <img v-if="item.src != null" :src="item.src" alt="John" />
+              <div
+                v-else
+                class="blue d-flex justify-center align-center"
+                style="height: 100%; width: 100%"
+              >
+                <span class="white--text">{{ getData(item.name) }}</span>
+              </div>
+            </v-avatar>
+          </div>
+          <div>
+            <v-avatar class="grey borders" style="margin-left: -15px" size="30">
+              <v-icon small color="grey darken-4"
+                >mdi-account-plus-outline</v-icon
+              >
+            </v-avatar>
+          </div>
         </div>
       </div>
       <div>
@@ -47,8 +61,8 @@
         </h4>
 
         <span class="d-flex align-center mt-8">
-          <span class="body-2">{{ $i18n.t("subject") }}-</span>
-          <h3 class="subtitle-1 font-weight-bold">English</h3>
+          <span class="body-2">{{ $i18n.t("subject") }} -</span>
+          <h3 class="subtitle-1 font-weight-bold ml-1">English</h3>
         </span>
       </div>
     </div>
@@ -57,11 +71,63 @@
     </div>
   </v-card>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      avatars: [
+        {
+          alt: "John Smitt",
+          id: 1,
+          presence: "Online",
+          name: "Frontend Engineer",
+          src: "https://randomuser.me/api/portraits/med/men/10.jpg",
+        },
+        {
+          alt: "Joanne Swizzlette",
+          id: 2,
+          name: "jack Nace",
+          role: "Automation Engineer",
+          src: null,
+        },
+        {
+          alt: "Frankie Dowle",
+          id: 4,
+          presence: "Online",
+          name: "Adem Naa",
+          role: "Platform Architect",
+          src: null,
+        },
+      ],
+    };
+  },
+  methods: {
+    getData(item) {
+      item.toUpperCase();
+      let name = item.split(" ")[0].charAt(0);
+      let surname = item.split(" ")[1].charAt(0);
+      console.log("isim=>", name + surname);
+      return name + surname;
+    },
+  },
+};
+</script>
 <style scoped>
 h1 {
   font-size: 16px;
   color: #141414;
 }
+.avatar-content {
+  margin-left: -15px;
+}
+.borders {
+  border: 2px solid rgb(255, 255, 255) !important;
+}
+.avatar-content:first-child {
+  margin-left: 0px;
+}
+
 @media only screen and (max-width: 750px) {
   .res-card {
     height: auto !important;

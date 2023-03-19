@@ -1,15 +1,21 @@
 <template>
   <div class="reviews-contener">
-    <h2 class="text-center text-h2">Reviews</h2>
+    <h2 style="color: #272d4e" class="text-center text-h2 font-weight-bold">
+      Reviews
+    </h2>
 
-    <v-window show-arrows class="mx-auto mt-16 window" style="width: 600px; z-index: 99">
+    <v-window
+      show-arrows
+      class="mx-auto mt-16 window"
+      style="width: 600px; z-index: 99"
+    >
       <template v-slot:prev="{ on, attrs }">
-        <v-btn color="info" fab v-bind="attrs" v-on="on"
+        <v-btn color="info resposive-btn" fab v-bind="attrs" v-on="on"
           ><v-icon>mdi-chevron-left</v-icon></v-btn
         >
       </template>
       <template v-slot:next="{ on, attrs }">
-        <v-btn color="info" fab v-bind="attrs" v-on="on">
+        <v-btn color="info resposive-btn" fab v-bind="attrs" v-on="on">
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </template>
@@ -39,8 +45,8 @@
           </span>
 
           <p class="text-h5 mt-4 text-center">
-            No other eCommerce platform allows people to start for free and grow their
-            store as their business grows. More important
+            No other eCommerce platform allows people to start for free and grow
+            their store as their business grows. More important
           </p>
         </v-card>
       </v-window-item>
@@ -85,8 +91,14 @@ export default {
   }),
 };
 </script>
-<style>
+<style scoped>
+.reviews-contener {
+  margin-top: 150px !important;
+}
 @media only screen and (max-width: 600px) {
+  .resposive-btn {
+    display: none;
+  }
   .reviews-contener {
     height: auto !important;
   }

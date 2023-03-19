@@ -2,9 +2,9 @@
   <div>
     <aboutVideo />
     <aboutUser class="mx-auto" />
-    <boring />
-    <imageGallery class="mx-auto mt-5" />
-    <whatCard />
+    <boring class="mt-8" />
+    <imageGallery class="mx-auto mt-10" />
+    <whatCard class="mt-8 mx-auto" />
     <bottom />
   </div>
 </template>

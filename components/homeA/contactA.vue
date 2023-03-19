@@ -6,7 +6,13 @@
       color="#255ED1"
       class="d-flex justify-center align-center"
     >
-      <v-card flat width="498" height="583" class="mt-3 pa-5 transparent">
+      <v-card
+        flat
+        width="498"
+        min-height="583"
+        max-height="auto"
+        class="mt-3 pa-5 transparent"
+      >
         <span>
           <label class="yellow--text">Contact us</label>
           <h2 class="white--text">
@@ -30,56 +36,70 @@
         </div>
       </v-card>
 
-      <v-card class="ml-5 pa-5" width="498" height="583">
-        <v-container>
+      <v-card class="ml-5 pa-5" width="498" min-height="583" max-height="auto">
+        <v-form ref="form" v-model="form">
           <v-row>
-            <v-col cols="12">
+            <v-col cols="12" class="mt-2">
               <v-text-field
-                v-model="firstname"
+                v-model="text.contackName"
                 :rules="nameRules"
                 :counter="10"
-                label="Name"
+                placeholder="Name"
                 required
-                variant="solo"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12">
               <v-text-field
-                v-model="subject"
-                :rules="subjectRules"
-                :counter="20"
-                label="Subject"
+                v-model="text.phone"
+                :rules="phoneRules"
+                :counter="10"
+                placeholder="Subject"
                 required
-                variant="solo"
               ></v-text-field>
             </v-col>
 
             <v-col cols="12">
               <v-text-field
-                v-model="email"
+                v-model="text.email"
                 :rules="emailRules"
-                label="E-mail"
+                placeholder="E-mail"
                 required
-                variant="solo"
               ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-textarea label="Text" variant="solo"></v-textarea>
+              <v-textarea
+                auto-grow
+                :rules="messageRules"
+                v-model="text.message"
+                rows="5"
+                row-height="30"
+                name="input-7-1"
+                placeholder="Send message"
+              ></v-textarea>
+            </v-col>
+            <v-col cols="12" class="mt-2">
+              <v-checkbox
+                v-model="agreement"
+                :rules="required"
+                color="deep-purple"
+              >
+                <template v-slot:label>
+                  Gönderceğiniz mesajı onaylıyormusunuz
+                </template>
+              </v-checkbox>
             </v-col>
 
-            <v-col cols="12" class="d-flex justify-center">
+            <v-col cols="12" class="d-flex justify-center mt-1">
               <v-btn
-                color="blue"
-                style="width: 100%"
-                class="py-3 d-flex mb-3 white--text"
+                :disabled="!form"
+                @click="submit"
+                class="blue white--text btn"
+                >Send -></v-btn
               >
-                <span>Send</span>
-                <v-icon class="ml-4">mdi-arrow-right</v-icon>
-              </v-btn>
             </v-col>
           </v-row>
-        </v-container>
+        </v-form>
       </v-card>
     </v-card>
   </div>
@@ -88,51 +108,46 @@
 <script>
 export default {
   data: () => ({
+    agreement: false,
     valid: false,
-    firstname: "",
-    subject: "",
+    form: false,
+    text: {
+      contackName: "",
+      phone: "",
+      email: "",
+      message: "",
+    },
+
     nameRules: [
-      (value) => {
-        if (value) return true;
-
-        return "Name requred";
-      },
-      (value) => {
-        if (value?.length <= 10) return true;
-
-        return "Name must be less than 10 characters.";
-      },
+      (v) => !!v || "İsim gerekli",
+      (v) => v.length <= 10 || "isim 10 karakterden fazla olamaz",
     ],
-    subjectRules: [
-      (value) => {
-        if (value) return true;
 
-        return "Subject Requred";
-      },
-      (value) => {
-        if (value?.length <= 20) return true;
-
-        return "subject must be less than 20 characters.";
-      },
+    phoneRules: [
+      (v) => !!v || "Konu alanı",
+      (v) => v.length <= 22 || "konu alnı kısa tutu",
     ],
-    email: "",
+
     emailRules: [
-      (value) => {
-        if (value) return true;
-
-        return "E-mail is requred.";
-      },
-      (value) => {
-        if (/.+@.+\..+/.test(value)) return true;
-
-        return "E-mail must be valid.";
-      },
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+/.test(v) || "E-mail must be valid",
     ],
-  }),
 
-  methods: {},
+    messageRules: [
+      (v) => !!v || "Mesaj kısımı boş bırakılamaz",
+      (v) => v.length <= 200 || "200  karekterden fazla girmesin",
+    ],
+    required: [(v) => !!v || "This field is required"],
+  }),
+  methods: {
+    submit() {
+      alert("tamadır krall");
+      console.log(this.text, this.checkbox);
+    },
+  },
 };
 </script>
+
 <style scoped>
 .contack-card {
   display: flex;

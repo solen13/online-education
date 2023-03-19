@@ -28,86 +28,113 @@
           Sing Up
         </v-btn>
       </div>
-
-      <v-row style="width: 80%" class="mx-auto mt-4">
-        <v-col cols="12">
-          <v-text-field
-            label="Email"
-            placeholder="Email Address"
-            outlined
-            class="blue--text"
-            type="email"
-            prepend-inner-icon="mdi-email-outline"
-          >
-          </v-text-field>
-        </v-col>
-        <v-col cols="12" v-if="!logiOrRegister">
-          <v-text-field
-            label="full name"
-            placeholder="Full name"
-            outlined
-            class="blue--text"
-            prepend-inner-icon="mdi-account-outline"
-          >
-          </v-text-field>
-        </v-col>
-        <v-col>
-          <v-text-field
-            label="password"
-            placeholder="password"
-            outlined
-            class="blue--text align-self-center"
-            :type="show1 ? 'text' : 'password'"
-            prepend-inner-icon="mdi-lock-outline"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="show1 = !show1"
-          ></v-text-field>
-        </v-col>
-        <v-col cols="6" v-if="!logiOrRegister">
-          <v-text-field
-            label="Number"
-            placeholder="Number"
-            outlined
-            class="blue--text"
-            type="number"
-            prepend-inner-icon="mdi-email-outline"
-          >
-          </v-text-field>
-        </v-col>
-        <v-col cols="12">
-          <v-btn
-            v-if="logiOrRegister"
-            class="blue white--text py-3"
-            style="width: 100%"
-          >
-            Login
-          </v-btn>
-          <v-btn v-else class="blue white--text py-3" style="width: 100%">
-            Sing Up
-          </v-btn>
-        </v-col>
-        <v-col cols="12">
-          <p class="text-center">
-            By logging in, you agree to DillBill's <br />
-            <a href="#">Privacy</a> Policy and <a href="#">Terms of</a>
-            Use.
-          </p>
-          <div class="d-flex justify-center align-center">
-            <div class="line mr-2"></div>
-            OR
-            <div class="line ml-2"></div>
-          </div>
-          <div class="d-flex justify-center mt-5">
-            <v-img max-width="30" height="30" src="/icon/google.png"></v-img>
-            <v-img
-              max-width="30"
-              height="30"
-              class="ml-2"
-              src="/icon/apple.png"
-            ></v-img>
-          </div>
-        </v-col>
-      </v-row>
+      <v-form v-model="form">
+        <v-row style="width: 80%" class="mx-auto mt-4">
+          <v-col cols="12">
+            <v-text-field
+              label="Email"
+              placeholder="Email Address"
+              outlined
+              class="blue--text"
+              type="email"
+              prepend-inner-icon="mdi-email-outline"
+              :rules="[rules.email]"
+              v-model="text.email"
+            >
+            </v-text-field>
+          </v-col>
+          <v-col cols="12" v-if="!logiOrRegister">
+            <v-text-field
+              label="full name"
+              placeholder="Full name"
+              outlined
+              class="blue--text"
+              prepend-inner-icon="mdi-account-outline"
+              :rules="[rules.name, rules.length(4)]"
+              v-model="text.fullname"
+            >
+            </v-text-field>
+          </v-col>
+          <v-col>
+            <v-text-field
+              v-if="!logiOrRegister"
+              label="password"
+              placeholder="password"
+              outlined
+              class="blue--text align-self-center"
+              :type="show1 ? 'text' : 'password'"
+              prepend-inner-icon="mdi-lock-outline"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show1 = !show1"
+              :rules="[rules.password]"
+              v-model="text.password"
+            ></v-text-field>
+            <v-text-field
+              v-else
+              label="password"
+              placeholder="password"
+              outlined
+              class="blue--text align-self-center"
+              :type="show1 ? 'text' : 'password'"
+              prepend-inner-icon="mdi-lock-outline"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="show1 = !show1"
+              v-model="text.oldPassword"
+            ></v-text-field>
+          </v-col>
+          <v-col v-if="!logiOrRegister" cols="12" lg="6" md="6">
+            <v-text-field
+              label="Number"
+              placeholder="Number"
+              outlined
+              class="blue--text"
+              type="number"
+              prepend-inner-icon="mdi-email-outline"
+              v-model="text.number"
+            >
+            </v-text-field>
+          </v-col>
+          <v-col cols="12">
+            <v-btn
+              v-if="logiOrRegister"
+              class="blue white--text py-3"
+              style="width: 100%"
+              :disabled="!form"
+            >
+              Login
+            </v-btn>
+            <v-btn
+              v-else
+              class="blue white--text py-3"
+              style="width: 100%"
+              :disabled="!form"
+            >
+              Sing Up
+            </v-btn>
+          </v-col>
+          <v-col cols="12">
+            <p class="text-center">
+              By logging in, you agree to DillBill's <br />
+              <a href="#">Privacy</a> Policy and <a href="#">Terms of</a>
+              Use.
+            </p>
+            <div class="d-flex justify-center align-center">
+              <div class="line mr-2"></div>
+              OR
+              <div class="line ml-2"></div>
+            </div>
+            <div class="d-flex justify-center mt-5">
+              <v-img max-width="30" height="30" src="/icon/google.png"></v-img>
+              <v-img
+                max-width="30"
+                height="30"
+                class="ml-2"
+                src="/icon/apple.png"
+              ></v-img>
+            </div>
+          </v-col>
+        </v-row>
+      </v-form>
     </v-card>
   </div>
 </template>
@@ -149,8 +176,31 @@
 export default {
   data() {
     return {
+      form: false,
       show1: false,
       password: "Password",
+      rules: {
+        email: (v) => !!(v || "").match(/@/) || "Please enter a valid email",
+        length: (len) => (v) =>
+          (v || "").length >= len ||
+          `Invalid character length, required ${len}`,
+        password: (v) =>
+          !!(v || "").match(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[^\w])).+$/
+          ) ||
+          "Password must contain an upper case letter, a numeric character, and a special character",
+        required: (v) => !!v || "This field is required",
+
+        name: (v) => v.length <= 25 || "İsim bu kadar uzun olamaz",
+        oldpassword: (v) => !!v || "password",
+      },
+      text: {
+        email: "",
+        password: "",
+        oldPassword: "",
+        fullname: "",
+        number: "",
+      },
     };
   },
   methods: {

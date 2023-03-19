@@ -1,25 +1,24 @@
 <template>
-  <v-row class="d-flex mx-auto contener-res" style="width: 80%">
-    <v-col>
-      <v-card
-        width="320"
-        height="376"
-        flat
-        color="#ecf5fb"
-        class="rounded-xl pa-3 mx-auto"
-      >
-        <li class="d-flex align-center py-9" v-for="item in 3">
-          <v-icon style="color: #2f4590" class="align-self-start" size="x-large"
-            >mdi-home</v-icon
-          >
-          <p style="color: #2f2f2f" class="ml-3 text-subtitle-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
-        </li>
+  <v-row class="d-flex mx-auto contener-res" style="width: 78%">
+    <v-col md="3" style="padding: 0">
+      <v-card width="100%" height="376" flat color="#ecf5fb" class="rounded-xl">
+        <ul class="py-5 px-3">
+          <li class="d-flex align-center mt-5" v-for="item in 4" :key="item">
+            <v-icon
+              style="color: #2f4590"
+              class="align-self-start"
+              size="x-large"
+              >mdi-home</v-icon
+            >
+            <p style="color: #2f2f2f" class="ml-3 text-subtitle-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+          </li>
+        </ul>
       </v-card>
     </v-col>
 
-    <v-col>
+    <v-col md="9" class="pl-5 col-responsive" style="padding: 0">
       <v-card
         height="376"
         width="100%"
@@ -115,6 +114,10 @@ export default {
   }
   .contener-res {
     width: 100% !important;
+  }
+  .col-responsive {
+    padding: 0 !important;
+    margin-top: 10px;
   }
   .row-responsive {
     flex-wrap: wrap-reverse;

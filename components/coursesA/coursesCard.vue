@@ -21,7 +21,7 @@
         English
       </span>
 
-      <h2 class="mb-1 mt-4">Loren ipsum clkck</h2>
+      <h2 class="mb-1 mb-4 font-weight-regular">Loren ipsum clkck</h2>
 
       <span>
         <span class="green--text"> junuary 17</span>

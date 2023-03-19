@@ -1,5 +1,5 @@
 <template>
-  <v-card width="50%" class="card-responsive">
+  <v-card height="100vh">
     <v-stepper v-model="e1">
       <v-stepper-header>
         <v-stepper-step :complete="e1 > 1" step="1" @click="e1 = 1">
@@ -153,14 +153,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.card-responsive {
-  margin-left: 15% !important;
-}
-@media only screen and (max-width: 600px) {
-  .card-responsive {
-    width: 100% !important;
-    margin-left: 0 !important;
-  }
-}
-</style>
+<style scoped></style>

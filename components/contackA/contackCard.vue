@@ -5,90 +5,114 @@
     flat
     class="d-flex justify-center align-center rounded-xl box-content mt-5 py-8 mb-4"
   >
-    <v-card width="50%" height="550" class="pa-4 from" flat>
-      <v-row>
-        <v-col cols="12">
-          <h2 class="display-1">
-            Get in <span class="green--text">touch</span>
-          </h2>
-          <p class="mt-3">
-            Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu leo
-            molestie vel, ornare non id blandit netus.
-          </p>
-        </v-col>
-        <v-col cols="12" class="mt-2">
-          <v-text-field
-            v-model="firstname"
-            :rules="nameRules"
-            :counter="10"
-            label="Contack name"
-            required
-          ></v-text-field>
-        </v-col>
+    <v-card
+      width="50%"
+      max-height="auto"
+      min-height="550"
+      class="pa-4 from"
+      flat
+    >
+      <v-form ref="form" v-model="form">
+        <v-row>
+          <v-col cols="12">
+            <h2 class="display-1">
+              Get in <span class="green--text">touch</span>
+            </h2>
+            <p class="mt-3">
+              Enim tempor eget pharetra facilisis sed maecenas adipiscing. Eu
+              leo molestie vel, ornare non id blandit netus.
+            </p>
+          </v-col>
+          <v-col cols="12" class="mt-2">
+            <v-text-field
+              v-model="text.contackName"
+              :rules="nameRules"
+              :counter="10"
+              placeholder="Contack name"
+              required
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12">
-          <v-text-field
-            v-model="lastname"
-            :rules="nameRules"
-            :counter="10"
-            label="Contack phone"
-            required
-          ></v-text-field>
-        </v-col>
+          <v-col cols="12">
+            <v-text-field
+              v-model="text.phone"
+              :rules="phoneRules"
+              :counter="10"
+              placeholder="Contack phone"
+              required
+            ></v-text-field>
+          </v-col>
 
-        <v-col cols="12">
-          <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12">
-          <v-text-field
-            v-model="email"
-            label="Let’s talk about your idea"
-            required
-          ></v-text-field>
-        </v-col>
-        <v-col cols="12" class="mt-2">
-          <v-checkbox
-            v-model="checkbox"
-            label="I want to protect my data by signing an NDA"
-          ></v-checkbox>
-        </v-col>
+          <v-col cols="12">
+            <v-text-field
+              v-model="text.email"
+              :rules="emailRules"
+              placeholder="E-mail"
+              required
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12">
+            <v-textarea
+              auto-grow
+              :rules="messageRules"
+              v-model="text.message"
+              rows="1"
+              row-height="7"
+              name="input-7-1"
+              placeholder="Send message"
+            ></v-textarea>
+          </v-col>
+          <v-col cols="12" class="mt-2">
+            <v-checkbox
+              v-model="agreement"
+              :rules="required"
+              color="deep-purple"
+            >
+              <template v-slot:label>
+                I want to protect my data by signing an NDA
+              </template>
+            </v-checkbox>
+          </v-col>
 
-        <v-col cols="12" class="mt-2">
-          <v-btn class="blue white--text btn">Submit</v-btn>
-        </v-col>
-        <v-col
-          cols="12"
-          class="d-flex justify-space-between mt-3 flex-wrap"
-          style="gap: 5px"
-        >
-          <span class="d-flex">
-            <v-icon size="30">mdi-phone-in-talk-outline</v-icon>
-            <div class="ml-2">
-              <div>phone</div>
-              <a href="#">111-4344-34</a>
-            </div>
-          </span>
-          <span class="d-flex">
-            <v-icon size="30">mdi-email-open-outline</v-icon>
-            <div class="ml-2">
-              <div>E-MAIL</div>
-              <a href="#">info@company.com</a>
-            </div>
-          </span>
-          <span class="d-flex">
-            <v-icon size="30">mdi-email-open-outline</v-icon>
-            <div class="ml-2">
-              <div>HELPDESK</div>
-              <a href="#">https://helpdesk.com</a>
-            </div>
-          </span>
-        </v-col>
-      </v-row>
+          <v-col cols="12" class="mt-2">
+            <v-btn
+              :disabled="!form"
+              @click="submit"
+              class="blue white--text btn"
+              >Submit</v-btn
+            >
+          </v-col>
+          <v-col
+            cols="12"
+            class="d-flex justify-space-between mt-3 flex-wrap"
+            style="gap: 5px"
+          >
+            <span class="d-flex">
+              <v-icon size="35" color="black">mdi-phone-in-talk-outline</v-icon>
+              <div class="ml-2">
+                <div class="black--text">phone</div>
+                <a class="red--text" href="#">111-4344-34</a>
+              </div>
+            </span>
+            <span class="d-flex">
+              <v-icon size="35" color="black">mdi-email-open-outline</v-icon>
+              <div class="ml-2">
+                <div class="text--text">E-MAIL</div>
+                <a class="red--text" href="#">info@company.com</a>
+              </div>
+            </span>
+            <span class="d-flex">
+              <v-icon size="35" color="black"
+                >mdi-email-arrow-right-outline</v-icon
+              >
+              <div class="ml-2">
+                <div class="text--text">HELPDESK</div>
+                <a class="red--text" href="#">https://helpdesk.com</a>
+              </div>
+            </span>
+          </v-col>
+        </v-row>
+      </v-form>
     </v-card>
 
     <v-card width="40%" height="550" class="ml-5 map" style="z-index: 2">
@@ -108,20 +132,43 @@
 <script>
 export default {
   data: () => ({
-    checkbox: false,
+    agreement: false,
     valid: false,
-    firstname: "",
-    lastname: "",
+    form: false,
+    text: {
+      contackName: "",
+      phone: "",
+      email: "",
+      message: "",
+    },
+
     nameRules: [
-      (v) => !!v || "Name is required",
-      (v) => v.length <= 10 || "Name must be less than 10 characters",
+      (v) => !!v || "İsim gerekli",
+      (v) => v.length <= 10 || "isim 10 karakterden fazla olamaz",
     ],
-    email: "",
+
+    phoneRules: [
+      (v) => !!v || "telefon alanı boş bırakılmaz",
+      (v) => v.length <= 11 || "Telfon alanı 11 hanli olmalı",
+    ],
+
     emailRules: [
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+/.test(v) || "E-mail must be valid",
     ],
+
+    messageRules: [
+      (v) => !!v || "Mesaj kısımı boş bırakılamaz",
+      (v) => v.length <= 200 || "200  karekterden fazla girmesin",
+    ],
+    required: [(v) => !!v || "This field is required"],
   }),
+  methods: {
+    submit() {
+      alert("tamadır krall");
+      console.log(this.text, this.checkbox);
+    },
+  },
 };
 </script>
 <style scoped>

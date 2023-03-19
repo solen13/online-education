@@ -26,41 +26,44 @@
         <v-icon medium class="red--text"> mdi-delete</v-icon>
       </v-btn>
     </v-card>
-    <div v-if="crate" class="popap d-flex justify-center align-center">
-      <v-card class="rounded-xl px-6" width="400" height="370">
-        <div class="d-flex justify-end">
-          <v-btn fab small class="red white--text" @click="crate = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </div>
-        <h4 class="text-center mb-2">Homework</h4>
-        <v-text-field label="Title" placeholder="Title" outlined class="" />
-        <v-text-field label="Subject" placeholder="Subject" outlined class="" />
-        <div class="d-flex justify-center mb-3">
-          <v-btn
-            color="primary"
-            class="text-none"
+
+    <v-row justify="center">
+      <v-dialog v-model="crate" width="600px">
+        <v-card class="rounded-xl px-6" height="370">
+          <h4 class="text-center mb-2">Homework</h4>
+          <v-text-field label="Title" placeholder="Title" outlined class="" />
+          <v-text-field
+            label="Subject"
+            placeholder="Subject"
             outlined
-            depressed
-            :loading="isSelecting"
-            @click="onButtonClick"
-          >
-            <v-icon left> mdi-cloud-upload </v-icon>
-            {{ buttonText }}
-          </v-btn>
-          <input
-            ref="uploader"
-            class="d-none"
-            type="file"
-            accept="application/pdf,application/vnd.ms-excel"
-            @change="onFileChanged"
+            class=""
           />
-        </div>
-        <div class="d-flex justify-center">
-          <v-btn @click="sendBtn" class="blue white--text">Send</v-btn>
-        </div>
-      </v-card>
-    </div>
+          <div class="d-flex justify-center mb-3">
+            <v-btn
+              color="primary"
+              class="text-none"
+              outlined
+              depressed
+              :loading="isSelecting"
+              @click="onButtonClick"
+            >
+              <v-icon left> mdi-cloud-upload </v-icon>
+              {{ buttonText }}
+            </v-btn>
+            <input
+              ref="uploader"
+              class="d-none"
+              type="file"
+              accept="application/pdf,application/vnd.ms-excel"
+              @change="onFileChanged"
+            />
+          </div>
+          <div class="d-flex justify-center">
+            <v-btn @click="sendBtn" class="blue white--text">Send</v-btn>
+          </div>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </div>
 </template>
 <script>

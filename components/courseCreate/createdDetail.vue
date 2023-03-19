@@ -11,6 +11,7 @@
       </v-btn>
       <span class="d-flex ml-2 align-center">
         <v-card
+          v-if="videoShow"
           width="50"
           height="50"
           class="d-flex justify-center align-center grey"
@@ -18,7 +19,7 @@
           <v-icon>mdi-play-circle-outline</v-icon>
         </v-card>
         <span class="ml-3 mt-3">
-          <h4>{{ getData.title }}</h4>
+          <h4 class="title">{{ getData.title }}</h4>
           <p class="subtitle">
             {{ getData.subject }}
           </p>
@@ -45,6 +46,10 @@ export default {
       type: Object,
       default: () => {},
     },
+    videoShow: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   methods: {
@@ -63,3 +68,27 @@ export default {
   },
 };
 </script>
+<style scoped>
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  font-size: 14px;
+}
+.subtitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px;
+  font-size: 14px;
+}
+@media only screen and (max-width: 600px) {
+  .title {
+    max-width: 110px !important;
+  }
+  .subtitle {
+    max-width: 110px !important;
+  }
+}
+</style>

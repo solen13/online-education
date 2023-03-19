@@ -166,10 +166,11 @@ export default {
 }
 @media only screen and (max-width: 600px) {
   .message-contener {
-    height: 70vh;
+    height: 66vh;
   }
   .message-input {
     width: 100%;
+    padding-bottom: 15px;
   }
   .back-btn {
     display: block;

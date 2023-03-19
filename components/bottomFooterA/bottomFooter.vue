@@ -1,9 +1,5 @@
 <template>
-  <div
-    flat
-    style="background: #15316a; width: 100%; height: 218px"
-    class="px-16 py-8"
-  >
+  <div flat style="background: #15316a; width: 100%; height: 218px" class="px-16 py-7">
     <div class="d-flex justify-space-between">
       <v-card width="333" height="73">LOGO</v-card>
 
@@ -36,15 +32,11 @@
         <nuxt-link to="/" class="pa-3 white--text">
           {{ $i18n.t("course") }}
         </nuxt-link>
-        <nuxt-link to="/" class="pa-3 white--text"
-          >{{ $i18n.t("reviews") }}
-        </nuxt-link>
+        <nuxt-link to="/" class="pa-3 white--text">{{ $i18n.t("reviews") }} </nuxt-link>
         <nuxt-link to="/" class="pa-3 white--text">
           {{ $i18n.t("about") }}
         </nuxt-link>
-        <nuxt-link to="/" class="pa-3 white--text"
-          >{{ $i18n.t("contact") }}
-        </nuxt-link>
+        <nuxt-link to="/" class="pa-3 white--text">{{ $i18n.t("contact") }} </nuxt-link>
         <nuxt-link to="/" class="pa-3 white--text">
           {{ $i18n.t("blogs") }}
         </nuxt-link>

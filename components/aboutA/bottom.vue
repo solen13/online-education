@@ -23,7 +23,8 @@
 @media only screen and (max-width: 600px) {
   .font {
     font-size: 16px !important;
-    line-height: 30px;
+    line-height: 20px !important;
+    margin-left: 10px;
   }
   br {
     display: none;

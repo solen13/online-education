@@ -10,24 +10,24 @@
         </nuxt-link>
         <nuxt-link
           :to="localePath({ name: 'courses' })"
-          class="pa-3 white--text hidden-sm-and-down"
+          class="pa-3 white--text btn-res"
         >
           {{ $i18n.t("course") }}
         </nuxt-link>
         <nuxt-link
           :to="localePath({ name: 'reviews' })"
-          class="pa-3 white--text hidden-sm-and-down"
+          class="pa-3 white--text btn-res"
           >{{ $i18n.t("reviews") }}
         </nuxt-link>
         <nuxt-link
           :to="localePath({ name: 'about' })"
-          class="pa-3 white--text hidden-sm-and-down"
+          class="pa-3 white--text btn-res"
         >
           {{ $i18n.t("about") }}
         </nuxt-link>
         <nuxt-link
           :to="localePath({ name: 'contack' })"
-          class="pa-3 white--text hidden-sm-and-down"
+          class="pa-3 white--text btn-res"
           >{{ $i18n.t("contact") }}
         </nuxt-link>
 
@@ -119,10 +119,7 @@ export default {
   height: 60px;
   background-color: #183869;
 }
-@media only screen and (max-width: 700px) {
-  .content {
-    display: none !important;
-  }
+@media only screen and (max-width: 600px) {
   .btn-res {
     display: none !important;
   }

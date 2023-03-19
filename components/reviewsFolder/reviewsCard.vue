@@ -41,6 +41,7 @@
 .v-card {
   border: 1px solid #bababa !important;
 }
+
 @media only screen and (max-width: 500px) {
   .card-responsive {
     height: auto !important;

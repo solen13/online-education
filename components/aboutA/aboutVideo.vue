@@ -16,7 +16,7 @@
     </v-col>
     <v-col cols="12" md="6">
       <h1>Loremipsum</h1>
-      <p>
+      <p style="line-height: 2.6">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora,
         blanditiis perferendis officia dolorum velit minima labore vero
         veritatis repudiandae. Animi minima accusantium quaerat, laudantium quae

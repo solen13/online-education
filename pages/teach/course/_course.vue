@@ -27,53 +27,50 @@
         />
       </li>
     </v-container>
-    <div v-if="isAdd" class="popap d-flex align-center">
-      <v-card width="400" height="350" class="px-4" style="margin-left: 25%">
-        <div class="d-flex justify-end">
-          <v-btn fab small @click="isAdd = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </div>
-        <h3 class="mt-3 text-center mb-2">Add Video</h3>
-        <v-text-field
-          label="Title"
-          placeholder="title"
-          v-model="newItem"
-          outlined
-          class=""
-        />
-        <v-text-field
-          label="Subject"
-          placeholder="Subject"
-          v-model="subject"
-          outlined
-          class=""
-        />
-        <div class="d-flex justify-center mb-3">
-          <v-btn
-            color="primary"
-            class="text-none"
+    <v-row justify="center">
+      <v-dialog v-model="isAdd" width="700px">
+        <v-card height="350" class="px-4">
+          <h3 class="mt-3 text-center mb-2">Add Video</h3>
+          <v-text-field
+            label="Title"
+            placeholder="title"
+            v-model="newItem"
             outlined
-            depressed
-            :loading="isSelecting"
-            @click="onButtonClick"
-          >
-            <v-icon left> mdi-cloud-upload </v-icon>
-            {{ buttonText }}
-          </v-btn>
-          <input
-            ref="uploader"
-            class="d-none"
-            type="file"
-            accept="application/pdf,application/vnd.ms-excel"
-            @change="onFileChanged"
+            class=""
           />
-        </div>
-        <div class="d-flex justify-center">
-          <v-btn @click="addItem" class="blue white--text">Add</v-btn>
-        </div>
-      </v-card>
-    </div>
+          <v-text-field
+            label="Subject"
+            placeholder="Subject"
+            v-model="subject"
+            outlined
+            class=""
+          />
+          <div class="d-flex justify-center mb-3">
+            <v-btn
+              color="primary"
+              class="text-none"
+              outlined
+              depressed
+              :loading="isSelecting"
+              @click="onButtonClick"
+            >
+              <v-icon left> mdi-cloud-upload </v-icon>
+              {{ buttonText }}
+            </v-btn>
+            <input
+              ref="uploader"
+              class="d-none"
+              type="file"
+              accept="application/pdf,application/vnd.ms-excel"
+              @change="onFileChanged"
+            />
+          </div>
+          <div class="d-flex justify-center">
+            <v-btn @click="addItem" class="blue white--text">Add</v-btn>
+          </div>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </div>
 </template>
 <script>

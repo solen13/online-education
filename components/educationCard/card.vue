@@ -6,6 +6,21 @@
     flat
     height="417"
   >
+    <div v-if="teachControl" class="d-flex justify-end">
+      <v-menu bottom origin="center center" transition="scale-transition">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" dark v-bind="attrs" v-on="on" icon>
+            <v-icon>mdi-pen</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item @click="update"> Update </v-list-item>
+          <v-list-item @click="sss"> S.S.S </v-list-item>
+          <v-list-item @click="confirm"> Detail </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
     <v-card flat class="rounded-xl" style="height: 160px; width: 100%">
       <v-img
         width="100%"
@@ -14,25 +29,26 @@
       ></v-img>
     </v-card>
 
-    <span class="ml-3">
-      <h2 class="mt-2">{{ getData.title }}</h2>
-      <span class="d-flex mt-1 align-center">
-        <v-rating
-          v-model="rating"
-          dense
-          readonly
-          size="14"
-          color="yellow"
-          background-color="yelow"
-          half-increments
-          small
-        />
-        <p style="opacity: 0.4" class="ml-2 caption mt-3">
+    <span class="mt-2 px-3">
+      <h2 class="">{{ getData.title }}</h2>
+      <div class="d-flex align-center justify-space-between">
+        <span>
+          <v-rating
+            v-model="rating"
+            dense
+            readonly
+            size="25"
+            color="warning "
+            background-color="grey"
+            half-increments
+          />
+        </span>
+        <h6 style="opacity: 0.4" class="ml-2 subtitle-2">
           (2000 {{ $i18n.t("reviews") }})
-        </p>
-      </span>
+        </h6>
+      </div>
 
-      <span class="d-flex justify-space-between align-center mt-2 px-2">
+      <span class="d-flex justify-space-between align-center mt-1">
         <span class="d-flex align-center">
           <v-icon>mdi-clock-time-eight-outline </v-icon>
           <span class="ml-1">200 {{ $i18n.t("hour") }}</span>
@@ -44,21 +60,9 @@
         </span>
       </span>
       <div v-if="btnShow" class="d-flex justify-center">
-        <v-btn class="rounded-pill mt-4 px-8 ml-2 py-3 white--text" color="blue"
+        <v-btn class="rounded-pill mt-3 px-8 ml-2 py-3 white--text" color="blue"
           >Learn course free
         </v-btn>
-      </div>
-      <div v-if="teachControl" class="d-flex justify-center mt-2">
-        <v-btn color="pink " class="white--text" small @click="update"
-          >update</v-btn
-        >
-        <v-btn color="blue" small class="ml-1 white--text" @click="sss"
-          >S.S.S</v-btn
-        >
-
-        <v-btn color="green" class="white--text ml-1" @click="confirm" small
-          >detail</v-btn
-        >
       </div>
     </span>
   </v-card>

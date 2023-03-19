@@ -68,13 +68,7 @@
       <v-col md="4" sm="6" cols="12" class="px-5">
         <v-text-field append-icon="mdi-draw-pen" label="Surname"></v-text-field>
         <!-- <v-text-field label="number" type="number"></v-text-field> -->
-        <vue-tel-input-vuetify
-          type="number"
-          :preferred-countries="['id', 'gb', 'ua', 'us']"
-          :valid-characters-only="true"
-          select-label="Code"
-          @input="onInput"
-        ></vue-tel-input-vuetify>
+        <vue-tel-input v-model="myPhone"></vue-tel-input>
         <v-text-field
           label="Old Password"
           placeholder="Old Password"
@@ -95,14 +89,12 @@
 </template>
 
 <script>
-import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue";
+import { VueTelInput } from "vue-tel-input";
 export default {
-  components: {
-    VueTelInputVuetify,
-  },
+  components: { VueTelInput },
   data() {
     return {
-      myPhone: "",
+      myPhone: null,
       phone: {
         number: "",
         valid: false,
@@ -115,18 +107,11 @@ export default {
     };
   },
   created() {
-    let urlName = this.$route.fullPath;
-    urlName = urlName.split("/")[2];
-    this.$store.dispatch("lessonsName", urlName);
+    this.$store.dispatch("lessonsName", "profile");
   },
   methods: {
     changeBtn() {
-      console.log("phone", this.phone, "myPhone", this.myphone);
-    },
-    onInput(formattedNumber, { number, valid, country }) {
-      this.phone.number = number.international;
-      this.phone.valid = valid;
-      this.phone.country = country && country.name;
+      console.log("number", this.myphone);
     },
   },
 };
@@ -147,3 +132,4 @@ export default {
 }
 </style>
 >
+<style src="vue-tel-input/dist/vue-tel-input.css"></style>

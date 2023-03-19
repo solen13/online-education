@@ -1,5 +1,5 @@
 <template>
-  <v-row style="width: 80%" class="mx-auto mt-3 mb-2">
+  <v-row style="width: 78%" class="mx-auto mt-3 mb-2">
     <v-col md="6" cols="12">
       <h2>What it is</h2>
       <p>

@@ -22,79 +22,78 @@
         />
       </v-col>
     </v-row>
-    <div v-if="isCreate" class="create-conteiner d-flex align-center">
-      <div class="closeBtn pa-2">
-        <v-btn fab small @click="isCreate = false" class="red white--text">
-          <v-icon>mdi-close</v-icon></v-btn
-        >
-      </div>
-      <createCourse :update="UpdatePropsText" />
-    </div>
-    <div v-if="isss" class="create-conteiner d-flex align-center">
-      <div class="closeBtn pa-2">
-        <v-btn fab small @click="isss = false" class="red white--text">
-          <v-icon>mdi-close</v-icon></v-btn
-        >
-      </div>
-      <v-card width="70%" height="500" class="card-responsive">
-        <h3 class="text-center pa-2">Questions Content</h3>
-        <v-row class="mx-3">
-          <v-col cols="12" sm="3" md="3" lg="3" class="mt-3">
-            <v-text-field
-              v-model="questionsTitle"
-              label="Title"
-              placeholder="Title"
-              outlined
-              class=""
-            />
-            <v-textarea
-              auto-grow
-              outlined
-              rows="1"
-              row-height="7"
-              name="input-7-1"
-              label="Send message"
-              class=""
-              v-model="questionsMessage"
-            ></v-textarea>
-            <div class="d-flex justify-center">
-              <div v-if="isUpdateBtnActive">
-                <v-btn @click="updateBtn" class="blue white--text rounded-xl"
-                  >upDate</v-btn
+
+    <v-row justify="center">
+      <v-dialog v-model="isCreate" width="700px">
+        <createCourse :update="UpdatePropsText" />
+      </v-dialog>
+    </v-row>
+    <v-row justify="center">
+      <v-dialog v-model="isss" width="700px">
+        <v-card height="400" class="card-content">
+          <h3 class="text-center pa-2">Questions Content</h3>
+          <v-row class="mx-3">
+            <v-col cols="12" sm="3" md="3" lg="3" class="mt-3">
+              <v-text-field
+                v-model="questionsTitle"
+                label="Title"
+                placeholder="Title"
+                outlined
+                class=""
+              />
+              <v-textarea
+                auto-grow
+                outlined
+                rows="1"
+                row-height="7"
+                name="input-7-1"
+                label="Send message"
+                class=""
+                v-model="questionsMessage"
+              ></v-textarea>
+              <div class="d-flex justify-center">
+                <div v-if="isUpdateBtnActive">
+                  <v-btn @click="updateBtn" class="blue white--text rounded-xl"
+                    >upDate</v-btn
+                  >
+                  <v-btn @click="done" text>Done</v-btn>
+                </div>
+                <v-btn
+                  v-else
+                  @click="addItem"
+                  class="blue white--text rounded-xl"
+                  >Add</v-btn
                 >
-                <v-btn @click="done" text>Done</v-btn>
               </div>
-              <v-btn v-else @click="addItem" class="blue white--text rounded-xl"
-                >Add</v-btn
-              >
-            </div>
-          </v-col>
-          <v-col cols="12" sm="9" md="9" lg="9">
-            <v-card height="70vh" flat class="sssList">
-              <li
-                class="todo-item mt-3"
-                v-for="(item, i) in todos"
-                :key="i"
-                draggable="true"
-                @dragstart="dragStart(i, $event)"
-                @dragover.prevent
-                @dragend="dragEnd"
-                @drop="dragFinish(i, $event)"
-                :class="`color${i}`"
-              >
-                <cardContent
-                  :getData="item"
-                  @upDate="upDateBtn(item, i)"
-                  @moveUp="move(i, i - 1)"
-                  @moveDown="move(i, i + 1)"
-                  @removeItem="removeItem(item)"
-                />
-              </li>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-card>
-    </div>
+            </v-col>
+            <v-col cols="12" sm="9" md="9" lg="9">
+              <v-card height="50vh" width="100%" flat class="sssList">
+                <li
+                  class="todo-item mt-3"
+                  v-for="(item, i) in todos"
+                  :key="i"
+                  draggable="true"
+                  @dragstart="dragStart(i, $event)"
+                  @dragover.prevent
+                  @dragend="dragEnd"
+                  @drop="dragFinish(i, $event)"
+                >
+                  <cardContent
+                    :getData="item"
+                    :videoShow="false"
+                    @upDate="upDateBtn(item, i)"
+                    @moveUp="move(i, i - 1)"
+                    @moveDown="move(i, i + 1)"
+                    @removeItem="removeItem(item)"
+                    :class="`color${i}`"
+                  />
+                </li>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 <script>
@@ -182,14 +181,22 @@ export default {
 
       this.isUpdateBtnActive = false;
       const qq = document.querySelector(".color" + this.updateIndex);
-      qq.classList.remove("disable");
+      qq.classList.remove("active");
+      let disable = document.querySelectorAll("li");
+      disable.forEach(function (element) {
+        element.classList.remove("disable");
+      });
     },
     done() {
       this.questionsTitle = "";
       this.questionsMessage = "";
       this.isUpdateBtnActive = false;
       const qq = document.querySelector(".color" + this.updateIndex);
-      qq.classList.remove("disable");
+      qq.classList.remove("active");
+      let disable = document.querySelectorAll("li");
+      disable.forEach(function (element) {
+        element.classList.remove("disable");
+      });
     },
     removeItem(item) {
       this.todos.splice(this.todos.indexOf(item), 1);
@@ -227,12 +234,14 @@ export default {
       this.isUpdateBtnActive = true;
       this.questionsTitle = item.title;
       this.questionsMessage = item.subject;
-      const qq = document.querySelector(".color" + i);
-      qq.classList.add("disable");
-      this.updateIndex = i;
-      //   let disable = document.querySelectorAll("li");
 
-      //   disable.classList.add("disable");
+      this.updateIndex = i;
+      const qq = document.querySelector(".color" + this.updateIndex);
+      qq.classList.add("active");
+      let disable = document.querySelectorAll("li");
+      disable.forEach(function (element) {
+        element.classList.add("disable");
+      });
     },
     cardUpdateBtn() {
       this.UpdatePropsText = JSON.parse(localStorage.getItem("courses"));
@@ -266,7 +275,7 @@ export default {
 </script>
 <style scoped>
 .active {
-  border: 2px solid red;
+  background-color: rgba(72, 190, 223, 0.556) !important;
 }
 .disable {
   pointer-events: none;
@@ -294,5 +303,13 @@ export default {
 }
 .todo-item {
   width: 95%;
+}
+@media only screen and (max-width: 600px) {
+  .sssList {
+    height: 100% !important;
+  }
+  .card-content {
+    height: 100% !important;
+  }
 }
 </style>

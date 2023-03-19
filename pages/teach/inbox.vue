@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex" style="width: 100%">
-    <v-list class="destop">
+    <v-list class="destop content-destop">
       <v-list-item-group>
         <v-list-item
           v-for="(item, i) in messages"
@@ -65,6 +65,46 @@ export default {
           time: "22:35 PM",
           message: "pdf gelmedi",
         },
+        {
+          name: "Ali atak",
+          time: "12:32 PM",
+          message: "Hocam bugün ders varmı",
+        },
+        {
+          name: "mehmet",
+          time: "17:35 PM",
+          message: "Hocam nasılsınız",
+        },
+        {
+          name: "fatma ",
+          time: "13:35 PM",
+          message: "dersi anlamadım",
+        },
+        {
+          name: "Naci",
+          time: "22:35 PM",
+          message: "pdf gelmedi",
+        },
+        {
+          name: "Ali atak",
+          time: "12:32 PM",
+          message: "Hocam bugün ders varmı",
+        },
+        {
+          name: "mehmet",
+          time: "17:35 PM",
+          message: "Hocam nasılsınız",
+        },
+        {
+          name: "fatma ",
+          time: "13:35 PM",
+          message: "dersi anlamadım",
+        },
+        {
+          name: "Naci",
+          time: "22:35 PM",
+          message: "pdf gelmedi",
+        },
       ],
     };
   },
@@ -86,6 +126,11 @@ export default {
 };
 </script>
 <style scoped>
+.content-destop {
+  height: 90vh;
+  width: 400px !important;
+  overflow-y: auto;
+}
 @media only screen and (min-width: 600px) {
   .desktop {
     display: block;

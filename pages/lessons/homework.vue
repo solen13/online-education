@@ -33,9 +33,7 @@ export default {
     return { ex4: false };
   },
   created() {
-    let urlName = this.$route.fullPath;
-    urlName = urlName.split("/")[2];
-    this.$store.dispatch("lessonsName", urlName);
+    this.$store.dispatch("lessonsName", "Homework");
   },
 };
 </script>

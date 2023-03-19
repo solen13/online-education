@@ -31,7 +31,7 @@
           <v-btn color="#247CFF" class="rounded-pill white--text mt-3">
             Get Started
           </v-btn>
-          <p class="mt-3 ml-3">
+          <p class="mt-5 ml-3">
             <b>Free</b>
           </p>
         </span>

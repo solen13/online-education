@@ -1,19 +1,16 @@
 <template>
-  <v-card flat class="mx-auto mt-10 card-responsive" width="85%">
+  <v-card flat class="mx-auto mt-10 card-responsive" width="90%">
     <h2 class="texts text-h3 font-weight-bold">Our Courses</h2>
     <v-sheet class="mx-auto" elevation="0" width="%100">
       <v-slide-group v-model="model" class="pa-4" active-class="success">
-        <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
-          <v-card
-            :color="active ? undefined : 'grey lighten-1'"
-            class="ma-4"
-            height="400"
-            width="200"
-            @click="toggle"
-            flat
-          >
+        <v-slide-item
+          v-for="(item, n) in lessons"
+          :key="n"
+          v-slot="{ active, toggle }"
+        >
+          <v-card class="ma-4" height="400" width="290" @click="toggle" flat>
             <v-row class="fill-height align-center justify-center">
-              <contentCard />
+              <contentCard :btnShow="true" :getData="item" />
             </v-row>
           </v-card>
         </v-slide-item>
@@ -28,6 +25,29 @@ export default {
   data: () => ({
     model: null,
     rating: 2.5,
+    lessons: [
+      {
+        title: "Javascript",
+        router: "/javascript/oneLessons",
+      },
+
+      {
+        title: "HTML CSS",
+        router: "/htmlCss/oneLessons",
+      },
+      {
+        title: "Computer Enginer",
+        router: "/comuterenginer/oneLessons",
+      },
+      {
+        title: "Asp .Net",
+        router: "/aspnet/oneLessons",
+      },
+      {
+        title: "php",
+        router: "/php/oneLessons",
+      },
+    ],
   }),
   components: { contentCard },
 };
