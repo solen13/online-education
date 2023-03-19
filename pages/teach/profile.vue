@@ -68,13 +68,7 @@
       <v-col md="4" sm="6" cols="12" class="px-5">
         <v-text-field append-icon="mdi-draw-pen" label="Surname"></v-text-field>
         <!-- <v-text-field label="number" type="number"></v-text-field> -->
-        <vue-tel-input-vuetify
-          type="number"
-          :preferred-countries="['id', 'gb', 'ua', 'us']"
-          :valid-characters-only="true"
-          select-label="Code"
-          @input="onInput"
-        ></vue-tel-input-vuetify>
+
         <v-text-field
           label="Old Password"
           placeholder="Old Password"
@@ -95,11 +89,8 @@
 </template>
 
 <script>
-import VueTelInputVuetify from "vue-tel-input-vuetify/lib/vue-tel-input-vuetify.vue";
 export default {
-  components: {
-    VueTelInputVuetify,
-  },
+  components: {},
   data() {
     return {
       myPhone: "",
