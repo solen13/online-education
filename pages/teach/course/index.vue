@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <div>
     <div class="d-flex justify-end mb-2">
       <v-btn @click="cretedBtn" class="blue white--text rounded-pill"
         >create</v-btn
@@ -8,6 +8,10 @@
     <v-row style="width: 100%" class="mx-auto">
       <v-col
         md="4"
+        sm="4"
+        xs="12"
+        lg="3"
+        xl="2"
         class="d-flex justify-center"
         v-for="(item, index) in lessons"
         :key="index"
@@ -94,7 +98,7 @@
         </v-card>
       </v-dialog>
     </v-row>
-  </v-container>
+  </div>
 </template>
 <script>
 import courseBox from "@/components/educationCard/card.vue";

@@ -1,8 +1,8 @@
 <template>
-  <div class="card-content">
+  <div class="card-content d-flex justify-center align-center">
     <v-card
-      width="50%"
-      height="100%"
+      width="45%"
+      height="95%"
       class="mx-auto rounded-xl mt-1 card-responsive"
     >
       <div class="d-flex justify-end align-start pa-2">
@@ -87,7 +87,7 @@
               label="Number"
               placeholder="Number"
               outlined
-              class="blue--text"
+              class="blue--text ml-1"
               type="number"
               prepend-inner-icon="mdi-email-outline"
               v-model="text.number"
@@ -139,6 +139,9 @@
   </div>
 </template>
 <style scoped>
+* {
+  padding: 0;
+}
 .active {
   color: #050038 !important;
   border-bottom: 3px solid #1a7fc1 !important;
@@ -169,6 +172,12 @@
   }
   .head {
     font-size: 24px;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .card-responsive {
+    height: 75% !important;
+    width: 40% !important;
   }
 }
 </style>

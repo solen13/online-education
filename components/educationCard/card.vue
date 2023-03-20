@@ -4,7 +4,7 @@
     width="280"
     class="ml-4 d-flex flex-column justify-center"
     flat
-    height="417"
+    height="317"
   >
     <div v-if="teachControl" class="d-flex justify-end">
       <v-menu bottom origin="center center" transition="scale-transition">

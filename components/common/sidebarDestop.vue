@@ -30,8 +30,8 @@
       </v-list-item-group>
     </v-list>
     <div
-      style="height: 35%; with: 100%"
-      class="d-flex justify-center align-end"
+      style="height: 35%; width: 100%"
+      class="d-flex justify-center align-end sidebar-bottom"
     >
       <div>
         <div class="d-flex justify-center">
@@ -74,5 +74,10 @@ export default {
 .active {
   background-color: #364fc7 !important;
   color: white !important;
+}
+@media only screen and (min-width: 1390px) {
+  .sidebar-bottom {
+    height: 46% !important;
+  }
 }
 </style>

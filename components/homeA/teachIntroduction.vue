@@ -1,5 +1,5 @@
 <template>
-  <v-row class="d-flex mx-auto contener-res" style="width: 78%">
+  <v-row class="d-flex mx-auto contener-res" style="width: 84%">
     <v-col md="3" style="padding: 0">
       <v-card width="100%" height="376" flat color="#ecf5fb" class="rounded-xl">
         <ul class="py-5 px-3">

@@ -84,6 +84,17 @@ export default {
   top: 0;
   left: 0;
 }
+@media only screen and (min-width: 1430px) {
+  .child-responsive {
+    width: 85% !important;
+  }
+  .sidebar-destop {
+    width: 15% !important;
+  }
+  .sidebars {
+    width: 15% !important;
+  }
+}
 @media only screen and (max-width: 600px) {
   .child-responsive {
     width: 100% !important;

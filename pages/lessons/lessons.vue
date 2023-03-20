@@ -4,6 +4,7 @@
       md="4"
       sm="6"
       xs="12"
+      lg="3"
       v-for="item in 15"
       :key="item"
       class="d-flex justify-center"

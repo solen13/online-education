@@ -20,27 +20,32 @@
         </v-btn>
       </template>
 
-      <v-window-item class="mx-auto" v-for="n in 5" :key="`card-${n}`">
+      <v-window-item
+        class="mx-auto windows-responsive"
+        v-for="n in 5"
+        :key="`card-${n}`"
+      >
         <v-card
           elevation="2"
           height="275"
           width="493"
           class="ma-2 rounded-xl px-12 pt-2 reviews-card-responsive"
         >
-          <span class="d-flex aligin-center">
-            <v-avatar size="90">
+          <span class="d-flex justify-center aligin-center">
+            <v-avatar size="85">
               <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
             </v-avatar>
-            <span class="ml-2">
-              <h1 class="text-blue">Mikel Cekson</h1>
+            <span class="ml-2 mt-3">
+              <h1 class="blue--text headline">Mikel Cekson</h1>
               <v-rating
                 v-model="item"
                 dense
-                half-increments
                 readonly
-                size="14"
-                color="yellow"
-              ></v-rating>
+                size="25"
+                color="warning "
+                background-color="grey"
+                half-increments
+              />
             </span>
           </span>
 
@@ -96,8 +101,8 @@ export default {
   margin-top: 150px !important;
 }
 @media only screen and (max-width: 600px) {
-  .resposive-btn {
-    display: none;
+  .windows-responsive {
+    padding-left: 20px !important;
   }
   .reviews-contener {
     height: auto !important;

@@ -10,9 +10,7 @@
       <v-col md="4" sm="12" cols="12" class="d-flex justify-center">
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
-            <v-card v-bind="attrs" v-on="on" width="100" height="100"
-              >profile
-            </v-card>
+            <v-card v-bind="attrs" v-on="on" width="100" height="100">profile </v-card>
           </template>
           <span>Change profile photo</span>
         </v-tooltip>
@@ -41,9 +39,7 @@
           <v-date-picker v-model="date" no-title scrollable>
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="menu = false"> Cancel </v-btn>
-            <v-btn text color="primary" @click="$refs.menu.save(date)">
-              OK
-            </v-btn>
+            <v-btn text color="primary" @click="$refs.menu.save(date)"> OK </v-btn>
           </v-date-picker>
         </v-menu>
 

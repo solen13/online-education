@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-16">
     <h1 class="text-center text-h2 font-weight-bold mt-2">
       Supported by real people
     </h1>
