@@ -56,10 +56,7 @@
   </div>
 </template>
 <script>
-import VueChatScroll from "vue-chat-scroll";
-
 export default {
-  components: { VueChatScroll },
   data() {
     return {
       messageText: "",
