@@ -29,10 +29,8 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
-    <div
-      style="height: 35%; width: 100%"
-      class="d-flex justify-center align-end sidebar-bottom"
-    >
+
+    <div class="d-flex justify-center align-end sidebar-bottom">
       <div>
         <div class="d-flex justify-center">
           <lang />
@@ -75,9 +73,23 @@ export default {
   background-color: #364fc7 !important;
   color: white !important;
 }
+/*
 @media only screen and (min-width: 1390px) {
   .sidebar-bottom {
     height: 46% !important;
   }
+}
+@media only screen and (min-width: 1804px) {
+  .sidebar-bottom {
+    height: 55% !important;
+  }
+}
+
+*/
+.sidebar-bottom {
+  position: absolute;
+  bottom: 0;
+  margin-left: 10%;
+  margin-bottom: 10px;
 }
 </style>

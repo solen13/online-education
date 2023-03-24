@@ -1,5 +1,5 @@
 <template>
-  <div class="contenter">
+  <div class="continer">
     <div class="d-flex head align-center">
       <v-btn fab x-small class="mr-2 ml-2 back-btn" @click="backBtn">
         <v-icon>mdi-arrow-left</v-icon>
@@ -13,17 +13,26 @@
       </div>
     </div>
 
-    <div class="message-contener px-2">
-      <p
-        v-for="message in messages"
-        class="message"
-        :class="{
-          'message-out': message.author === 'my',
-          'message-in': message.author !== 'my',
-        }"
-      >
-        {{ message.mesaage }}
-      </p>
+    <div class="message-contener px-2" ref="msgContainer">
+      <template v-for="message in messages">
+        <li
+          class="message"
+          :class="{
+            'message-out': message.author === 'my',
+            'message-in': message.author !== 'my',
+          }"
+        >
+          {{ message.mesaage }}
+        </li>
+        <span
+          :class="{
+            'time-out': message.author === 'my',
+            'time-in': message.author !== 'my',
+          }"
+        >
+          {{ message.time }}</span
+        >
+      </template>
     </div>
     <div class="d-flex mx-auto rounded-xl align-center message-input">
       <v-textarea
@@ -34,67 +43,47 @@
         name="input-7-1"
         label="Send message"
         class="text mt-7 ml-5"
+        v-model="messageText"
       ></v-textarea>
 
       <v-btn icon fab>
         <v-icon>mdi-attachment</v-icon>
       </v-btn>
-      <v-btn class="blue white--text" small fab>
+      <v-btn @click="sendBtn" class="blue white--text" small fab>
         <v-icon>mdi-send-outline</v-icon>
       </v-btn>
     </div>
   </div>
 </template>
 <script>
+import VueChatScroll from "vue-chat-scroll";
+
 export default {
+  components: { VueChatScroll },
   data() {
     return {
+      messageText: "",
       messages: [
         {
           mesaage: "hocam merhaba",
+          time: "12:23",
           author: "my",
         },
         {
           mesaage:
             "ödev hakkında bir sey soracaktım ödev hakkında bir sey soracaktım ödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktımödev hakkında bir sey soracaktım",
           author: "my",
+          time: "12:24",
         },
         {
           mesaage: "Tabi sorabilirisin konu ne",
           author: "teach",
+          time: "12:25",
         },
         {
           mesaage: "Ödevin ana başlıklarını nasıl yapcaktık onu yapamadım",
           author: "my",
-        },
-        {
-          mesaage: "Ödevin ana başlıklarını nasıl yapcaktık onu yapamadım",
-          author: "teach",
-        },
-
-        {
-          mesaage: "Tabi sorabilirisin konu ne",
-          author: "teach",
-        },
-        {
-          mesaage: "Ödevin ana başlıklarını nasıl yapcaktık onu yapamadım",
-          author: "my",
-        },
-        {
-          mesaage: "Ödevin ana başlıklarını nasıl yapcaktık onu yapamadım",
-          author: "teach",
-        },
-        {
-          mesaage: "Tabi sorabilirisin konu ne",
-          author: "teach",
-        },
-        {
-          mesaage: "Ödevin ana başlıklarını nasıl yapcaktık onu yapamadım",
-          author: "my",
-        },
-        {
-          mesaage: "Ödevin ana başlıklarını nasıl yapcaktık onu yapamadım",
-          author: "teach",
+          time: "12:43",
         },
       ],
     };
@@ -111,6 +100,29 @@ export default {
       this.$store.dispatch("windowBack", true);
       history.back();
     },
+    sendBtn() {
+      this.messages.push({
+        mesaage: this.messageText,
+        author: "my",
+        time: "12:59",
+      });
+      this.messageText = "";
+      setTimeout(() => {
+        this.messages.push({
+          mesaage: "Merhaba nasıl yardımcı olabilirim",
+          author: "teach",
+          time: "13:00",
+        });
+      }, 2000);
+    },
+  },
+  watch: {
+    messages: function () {
+      this.$nextTick(function () {
+        var container = this.$refs.msgContainer;
+        container.scrollTop = container.scrollHeight + 120;
+      });
+    },
   },
 };
 </script>
@@ -118,9 +130,9 @@ export default {
 .message-input {
   width: 75%;
 }
-.contenter {
+.continer {
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 60px);
   background-color: #f1f4f7;
 }
 .head {
@@ -159,6 +171,17 @@ export default {
   background: #e8ecef !important;
   color: black;
   border-radius: 10px;
+}
+
+.time-in {
+  color: rgb(115, 115, 115) !important;
+  font-size: 12px;
+}
+.time-out {
+  color: rgb(115, 115, 115) !important;
+  margin-left: 90%;
+  margin-top: -10px;
+  font-size: 12px;
 }
 .text {
   border-radius: 0 !important;

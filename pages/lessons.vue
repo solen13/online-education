@@ -95,6 +95,7 @@ export default {
     width: 15% !important;
   }
 }
+
 @media only screen and (max-width: 600px) {
   .child-responsive {
     width: 100% !important;
